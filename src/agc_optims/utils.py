@@ -12,17 +12,19 @@ def unitwise_norm(x):
         keepdim = True
     else:
         raise ValueError('Wrong input dimensions')
-
     return torch.sum(x**2, dim=dim, keepdim=keepdim) ** 0.5
+
+
 
 def agc(param, clipping=1e-2, eps=1e-3):
     """
         Implements the adaptive gradient clipping according to the NFNet paper: https://arxiv.org/pdf/2102.06171.pdf
     """
+    param_data = param.detach()
+    grad_data = param.grad.detach()
+    max_norm = unitwise_norm(param_data).clamp_(min=eps).mul_(clipping) # Clamp works faster than .max()! But iff min= is a float not a Tensor!
+    grad_norm = unitwise_norm(grad_data)
+    clipped_grad = grad_data.mul_((max_norm.div_(grad_norm.clamp(min=1e-6))))
+    new_grads = torch.where(grad_norm < max_norm, grad_data, clipped_grad)
+    param.grad.detach().copy_(new_grads)
 
-    param_norm = torch.max(unitwise_norm(param.detach()), torch.tensor(eps).to(param.device))
-    grad_norm = unitwise_norm(param.grad.detach())
-    max_norm = param_norm * clipping
-    trigger = grad_norm > max_norm
-    clipped_grad = param.grad * (max_norm / torch.max(grad_norm,torch.tensor(1e-6).to(grad_norm.device)))
-    param.grad.detach().copy_(torch.where(trigger, clipped_grad, param.grad))
