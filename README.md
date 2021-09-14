@@ -25,7 +25,7 @@ pip install agc_optims
 ### Usage
 
 To be consistent with PyTorch all arguments of the optimizer remain the same as in the standard. Only two parameters are added for the AGC:
-* `clipping` : Hyperparameter for the clipping of the parameter. Default value 1e-2, smaller batchsizes demand a higher clipping parameter
+* `clipping` : Hyperparameter for the clipping of the parameter. Default value 1e-2, smaller batch sizes demand a higher clipping parameter
 * `agc_eps` : Term used in AGC to prevent grads clipped to zero, default value 1e-3
 
 #### SGD
