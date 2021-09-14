@@ -99,13 +99,13 @@ Batch Size 128 - RMSProp Accuracy on Cifar10           |  Batch Size 128 - RMSPr
 
 ## To Do
 - [x] Add first comparsion based on CIFAR10 with a small CNN
-- [] Add comparsion with higher batch sizes (256,512,1024)
-- [] Add tests for each optimizer
-- [] Clipping == 0 no AGC
-- [] Add comparsion based on CIFAR100 with a small CNN
-- [] Add comparsion based on CIFAR10/100 with ResNet
-- [] Add comparsion with ImageNet (I do not have enough GPU-Power currently if someone provides some tests I would be grateful)
-- [] Add all optimizer included in PyTorch
-- [] Support of other frameworks than PyTorch
-- [] Add first comparsion based on CIFAR with a small CNN
+- [ ] Add comparsion with higher batch sizes (256,512,1024)
+- [ ] Add tests for each optimizer
+- [ ] Clipping == 0 no AGC
+- [ ] Add comparsion based on CIFAR100 with a small CNN
+- [ ] Add comparsion based on CIFAR10/100 with ResNet
+- [ ] Add comparsion with ImageNet (I do not have enough GPU-Power currently if someone provides some tests I would be grateful)
+- [ ] Add all optimizer included in PyTorch
+- [ ] Support of other frameworks than PyTorch
+- [ ] Add first comparsion based on CIFAR with a small CNN
   
