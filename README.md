@@ -9,6 +9,10 @@ A small lib for using adaptive gradient clipping in your optimizer. Currently Py
 
 ## News
 
+### Sep 15, 2021
+* Add AGC use independent from optimizer choice in PyTorch
+
+
 ### Sep 14, 2021
 * Add AdamW, Adam, SGD and RMSprop with AGC 
 * Add first comparsion between optimizers with and without AGC based on CIFAR10
@@ -27,6 +31,17 @@ pip install agc_optims
 To be consistent with PyTorch all arguments of the optimizer remain the same as in the standard. Only two parameters are added for the AGC:
 * `clipping` : Hyperparameter for the clipping of the parameter. Default value 1e-2, smaller batch sizes demand a higher clipping parameter
 * `agc_eps` : Term used in AGC to prevent grads clipped to zero, default value 1e-3
+
+#### Optimizer independent
+```python
+from torch.optim import Adam
+from agc_optims.clipper import AGC
+
+net = Net() # your model
+
+optimizer = Adam(net.parameters(), lr=0.001)
+optimizer = AGC(optimizer=optimizer, clipping=0.16)
+```
 
 #### SGD
 ```python
@@ -99,6 +114,7 @@ Batch Size 128 - RMSProp Accuracy on Cifar10           |  Batch Size 128 - RMSPr
 
 ## To Do
 - [x] Add first comparsion based on CIFAR10 with a small CNN
+- [x] Add AGC independent from optimizer
 - [ ] Add comparsion with higher batch sizes (256,512,1024)
 - [ ] Add tests for each optimizer
 - [ ] Clipping == 0 no AGC

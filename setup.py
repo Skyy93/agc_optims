@@ -13,7 +13,7 @@ setuptools.setup(
     name="agc_optims",
     version=agc_optims.__version__,
     author="Fabian Deuser",
-    description="Easy to use optimizers in with adaptive gradient clipping. Written in PyTorch.",
+    description="Easy to use optimizers with adaptive gradient clipping. Written in PyTorch.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Skyy93/agc_optims",
